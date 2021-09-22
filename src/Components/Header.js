@@ -19,6 +19,7 @@ function Header(props) {
     return (
         <div className="header">
             <h1>Spacetagram</h1>
+            <p>Enter a date to see its Astronomy Picture of the Day! </p>
             <div className='searchBarDiv'>
                 <Icon circular name='search' />
                 <input type='date' placeholder="YYYY-MM-DD" onChange={handleChange}/>
