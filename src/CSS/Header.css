@@ -1,0 +1,14 @@
+.header{
+    justify-content: space-between;
+    padding-top: 10px;
+}
+
+.header input{
+    height: 2em;
+    border: none;
+}
+
+.header h1{
+    font-size: 2em;
+}
+

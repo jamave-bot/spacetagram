@@ -1,23 +1,39 @@
-import logo from './logo.svg';
 import './App.css';
+import React, {useEffect, useState} from 'react';
+import Header from './Components/Header'
+import Post from './Components/Post';
+
 
 function App() {
+
+  const API_KEY = process.env.REACT_APP_NASA_KEY 
+  const [postArray, setPostArray] = useState([])
+
+
+  useEffect(() => {
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}`)
+      .then(res=>res.json())
+      .then(data =>{
+        setPostArray([data])
+      })
+      // eslint-disable-next-line
+  }, [])
+
+
+  console.log(postArray)
+
+  const showPosts = () =>{
+    return postArray.map(post=>{
+      console.log(post)
+      return <Post post={post}/>
+    })
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header />
+      {showPosts()}
+      {/* <Post post={postArray[0]}/> */}
     </div>
   );
 }
