@@ -34,9 +34,9 @@ function App() {
   }
 
   const showPosts = () =>{
-    return postArray.map(post=>{
+    return postArray.map((post,index)=>{
       console.log(post)
-      return <Post post={post}/>
+      return <Post post={post} key={index}/>
     })
   }
 
