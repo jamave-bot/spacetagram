@@ -16,11 +16,22 @@ function App() {
       .then(data =>{
         setPostArray([data])
       })
+
+
+    fetch(`https://api.nasa.gov/planetary/apod?api_key=${API_KEY}&start_date=2021-09-20`)
+      .then(res=>res.json())
+      .then(data=>{
+        console.log(data)
+      })
       // eslint-disable-next-line
   }, [])
 
 
   console.log(postArray)
+
+  const getFilteredPosts = (filteredPosts) =>{
+    setPostArray(filteredPosts)
+  }
 
   const showPosts = () =>{
     return postArray.map(post=>{
@@ -31,7 +42,7 @@ function App() {
 
   return (
     <div className="App">
-      <Header />
+      <Header getFilteredPosts={getFilteredPosts}/>
       {showPosts()}
       {/* <Post post={postArray[0]}/> */}
     </div>
